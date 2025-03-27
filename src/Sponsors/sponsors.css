@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+  background-color:#020c17;
+  margin: 0;
+  padding: 0;
+  min-height: 200vh; /* Ensure scrollable page */
+}
+
+.floating-hackathon-website {
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.floating-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:rgba(12, 28, 59, 0.8);
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.website-container {
+  width: 100%;
+  max-width: 1200px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+  padding: 60px 40px;
+  position: relative;
+  z-index: 10;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.sponsors_section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: #16213e;
+  position: relative;
+}
+
+.sponsors_section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #0f3460;
+}
+
+.sponsors-section {
+  margin-bottom: 60px;
+  transition: transform 0.3s ease;
+}
+
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.sponsor-card {
+  background-color: #f9f9fc;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.sponsor-card:hover {
+  transform: translateY(-15px) !important;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Rest of the previous CSS remains the same */
+.sponsor-logo {
+  max-width: 150px;
+  margin-bottom: 20px;
+}
+
+.sponsor-details h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #16213e;
+}
+
+.sponsor-tier {
+  color: #4b4b4b;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.sponsor-description {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.timeline-section {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.timeline {
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: #e0e0e0;
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.timeline-content {
+  width: 45%;
+  padding: 20px;
+  background-color: #f9f9fc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.timeline-content:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: auto;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: #0f3460;
+  border-radius: 50%;
+}
+
+.timeline-date {
+  color: #4b4b4b;
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.timeline-title {
+  color: #16213e;
+  margin-bottom: 10px;
+}
+
+.timeline-description {
+  color: #666;
+  font-size: 0.9rem;
+}
