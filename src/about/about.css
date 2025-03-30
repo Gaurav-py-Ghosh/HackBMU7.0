@@ -1,5 +1,5 @@
 .about-container {
-  background: linear-gradient(to bottom, #000314, #001);
+  background: linear-gradient(to bottom, #000314, #001028);
   min-height: 200vh;
   position: relative;
   overflow: hidden;
@@ -9,21 +9,22 @@
   height: 100vh;
   position: fixed;
   width: 100%;
-  top: 0.5rem;
-  transform: translateY(-0.625rem);
-  transition: transform 0.1s linear;
+  top: 0;
+  will-change: transform;
+  transform: translateY(0);
+  transition: transform 0.1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .galaxy {
   width: 100%;
   height: 100vh;
   position: fixed;
-  background: radial-gradient(circle at center, #000314 0%, #000 100%);
+  background: radial-gradient(ellipse at center, #000314 0%, #000 100%);
   will-change: transform, opacity;
   backface-visibility: hidden;
   perspective: 1000;
   transform-style: preserve-3d;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,10 +33,10 @@
 
 .central-star {
   position: fixed;
-  top: calc(50% + 0.5rem);
+  top: 50%;
   left: 50%;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   background: #fff;
   border-radius: 50%;
   transform: translate(-50%, -50%);
@@ -45,47 +46,122 @@
     0 0 50px #4fc3f7,
     0 0 70px #4fc3f7;
   z-index: 2;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy easing */
   overflow: hidden;
+  will-change: transform, width, height, box-shadow;
 }
 
 .central-star::before {
   content: '';
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 140%;
+  height: 140%;
+  top: -20%;
+  left: -20%;
   background: radial-gradient(circle at center, #fff 0%, transparent 70%);
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulse 3s ease-in-out infinite;
 }
 
 .central-star.expanded {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle at center, 
-    rgba(30, 0, 60, 0.8) 0%,
-    rgba(15, 0, 30, 0.9) 40%,
-    rgba(0, 0, 0, 1) 100%
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(ellipse at center, 
+    rgba(40, 0, 80, 0.8) 0%,
+    rgba(20, 0, 40, 0.9) 40%,
+    rgba(5, 0, 20, 1) 100%
   );
   box-shadow: 
-    0 0 100px rgba(60, 0, 120, 0.3),
-    inset 0 0 80px rgba(80, 0, 160, 0.2);
+    0 0 100px rgba(80, 0, 160, 0.4),
+    0 0 200px rgba(60, 0, 120, 0.2),
+    inset 0 0 80px rgba(100, 0, 200, 0.3);
   backdrop-filter: blur(8px);
-  animation: darkMatterPulse 8s ease-in-out infinite;
-  transform: translate(-50%, -50%);
+  animation: darkMatterPulse 10s ease-in-out infinite;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Nebula glow effect */
+.nebula-glow {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: 
+    radial-gradient(ellipse at 30% 40%, rgba(120, 0, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(0, 120, 255, 0.15) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 1s ease-out;
+  mix-blend-mode: screen;
+  animation: nebulaShift 25s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.central-star.expanded .nebula-glow {
+  opacity: 1;
+}
+
+/* Star particles within the expanded sphere */
+.star-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-out;
+  pointer-events: none;
+}
+
+.central-star.expanded .star-particles {
+  opacity: 1;
+}
+
+.star-particles::before,
+.star-particles::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 10% 20%, white 1px, transparent 1px),
+    radial-gradient(circle at 30% 70%, white 1px, transparent 1px),
+    radial-gradient(circle at 50% 40%, white 1px, transparent 1px),
+    radial-gradient(circle at 70% 30%, white 1px, transparent 1px),
+    radial-gradient(circle at 90% 60%, white 1px, transparent 1px),
+    radial-gradient(circle at 15% 85%, white 1px, transparent 1px),
+    radial-gradient(circle at 40% 10%, white 1px, transparent 1px),
+    radial-gradient(circle at 60% 80%, white 1px, transparent 1px);
+  background-size: 200% 200%;
+  filter: blur(1px);
+  animation: starTwinkle 6s ease-in-out infinite alternate;
+}
+
+.star-particles::after {
+  background-image: 
+    radial-gradient(circle at 20% 30%, white 0.8px, transparent 0.8px),
+    radial-gradient(circle at 40% 80%, white 0.8px, transparent 0.8px),
+    radial-gradient(circle at 60% 50%, white 0.8px, transparent 0.8px),
+    radial-gradient(circle at 80% 40%, white 0.8px, transparent 0.8px),
+    radial-gradient(circle at 10% 60%, white 0.8px, transparent 0.8px);
+  animation-delay: -3s;
 }
 
 .central-star.expanded::before {
   content: '';
   position: absolute;
-  width: 150%;
-  height: 150%;
+  width: 180%;
+  height: 180%;
+  top: -40%;
+  left: -40%;
   background: radial-gradient(
     ellipse at center,
-    rgba(80, 0, 160, 0.1) 0%,
-    rgba(40, 0, 80, 0.05) 40%,
+    rgba(100, 0, 200, 0.1) 0%,
+    rgba(60, 0, 120, 0.05) 40%,
     transparent 70%
   );
-  animation: darkMatterSpin 20s linear infinite;
+  animation: darkMatterSpin 25s linear infinite;
 }
 
 .central-star.expanded::after {
@@ -93,29 +169,45 @@
   position: absolute;
   width: 200%;
   height: 200%;
+  top: -50%;
+  left: -50%;
   background: repeating-conic-gradient(
     from 0deg,
-    rgba(60, 0, 120, 0.1) 0deg,
+    rgba(80, 0, 160, 0.12) 0deg,
     transparent 10deg,
-    rgba(80, 0, 160, 0.05) 20deg
+    rgba(100, 20, 200, 0.07) 20deg
   );
-  animation: darkMatterDistort 15s ease-in-out infinite;
-  opacity: 0.3;
+  animation: darkMatterDistort 20s ease-in-out infinite;
+  opacity: 0.4;
 }
 
 @keyframes darkMatterPulse {
   0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.05); }
+  50% { transform: translate(-50%, -50%) scale(1.03); }
 }
 
 @keyframes darkMatterSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes darkMatterDistort {
-  0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-  50% { transform: translate(-50%, -50%) scale(1.1) rotate(180deg); }
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg) scale(1.05); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg) scale(1.05); }
+}
+
+@keyframes nebulaShift {
+  0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.8; }
+  25% { transform: rotate(2deg) scale(1.02); opacity: 1; }
+  50% { transform: rotate(0deg) scale(1.05); opacity: 0.9; }
+  75% { transform: rotate(-2deg) scale(1.02); opacity: 1; }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.02); }
 }
 
 .central-star .about-content {
@@ -123,10 +215,12 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 80%;
-  transform: translate(-50%, -50%) scale(0.8);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 85%;
+  transform: translate(-50%, -50%) scale(0.9);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.6));
+  z-index: 3;
 }
 
 .central-star.expanded .about-content {
@@ -143,14 +237,13 @@
 
 .spiral-arm {
   position: absolute;
-  width: 3px;
-  height: 3px;
   background: #fff;
   border-radius: 50%;
   box-shadow: 0 0 8px #fff, 0 0 15px #4fc3f7, 0 0 20px rgba(79, 195, 247, 0.5);
-  animation: rotate 30s linear infinite;
+  animation: rotate var(--rotation-period, 30s) linear infinite;
   opacity: 0;
   animation-delay: var(--delay);
+  will-change: transform, opacity;
 }
 
 @keyframes rotate {
@@ -158,7 +251,6 @@
     transform: 
       rotate(var(--start-angle))
       translateX(calc(var(--orbit-radius) * (1 - var(--eccentricity))))
-      translateX(calc(var(--orbit-radius) * var(--eccentricity)))
       scaleX(calc(1 - var(--eccentricity)))
       rotate(calc(-1 * var(--start-angle)));
     opacity: 0;
@@ -166,7 +258,7 @@
   5% {
     opacity: var(--star-opacity);
   }
-  90% {
+  95% {
     opacity: var(--star-opacity);
   }
   100% {
@@ -175,63 +267,83 @@
   }
 }
 
-.planet-section {
-  position: relative;
-  margin-top: 100vh;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.planet {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle at 30% 30%, #1a237e, #0d47a1, #000);
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 50px rgba(0, 149, 255, 0.5);
-}
-
 .about-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   color: #fff;
   text-align: center;
-  width: 80%;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .about-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 10px rgba(0, 149, 255, 0.8);
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 
+    0 0 15px rgba(100, 0, 200, 0.8),
+    0 0 30px rgba(80, 0, 160, 0.6);
+  background: linear-gradient(to right, #c2a0ff, #4fc3f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.2s forwards;
 }
 
 .about-content p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.92);
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .quantum-btn {
   background: transparent;
   color: #fff;
-  border: 2px solid #4fc3f7;
-  padding: 12px 24px;
+  border: 2px solid rgba(79, 195, 247, 0.8);
+  padding: 14px 28px;
   font-size: 1.1rem;
   border-radius: 30px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.8s forwards;
+}
+
+.quantum-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #4fc3f7, #7c4dff);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .quantum-btn:hover {
-  background: #4fc3f7;
-  box-shadow: 0 0 20px #4fc3f7;
+  box-shadow: 
+    0 0 20px rgba(79, 195, 247, 0.6),
+    0 0 40px rgba(79, 195, 247, 0.3);
+  border-color: transparent;
+  letter-spacing: 2px;
+}
+
+.quantum-btn:hover::before {
+  transform: scaleX(1);
 }
