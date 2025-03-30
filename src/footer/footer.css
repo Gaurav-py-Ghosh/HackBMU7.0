@@ -1,15 +1,45 @@
-/* SophisticatedFooter.css */
+/* RetroCosmicFooter.css */
 
-.sophisticated-footer {
+.retro-cosmic-footer {
   position: relative;
   padding: 60px 5% 40px;
-  background-color:rgba(12, 28, 59, 0.8);
+  background-color: rgba(15, 23, 42, 0.85);
   overflow: hidden;
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  color: white;
-  box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.05);
+  color: #7dd3fc;
+  box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.2);
   margin: 0.5rem;
   border-radius: 0.625rem;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(103, 232, 249, 0.15);
+}
+
+.star-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: #67e8f9;
+  border-radius: 50%;
+  animation: twinkle 5s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .parallax-layer {
@@ -18,10 +48,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, 
-    rgba(240, 240, 240, 0.8) 0%,
-    rgba(240, 240, 240, 0.1) 50%,
-    rgba(240, 240, 240, 0.8) 100%
+  background: radial-gradient(
+    ellipse at center,
+    rgba(103, 232, 249, 0.03) 0%,
+    rgba(103, 232, 249, 0) 70%
   );
   z-index: 1;
   pointer-events: none;
@@ -55,30 +85,70 @@
   margin-right: 15px;
 }
 
-
-
-.geo-element:nth-child(1) {
-  width: 20px;
-  height: 20px;
-  top: 0;
-  left: 0;
+.logo-shape {
+  animation: rotate 20s linear infinite;
+  transform-origin: center;
 }
 
+.logo-orbit {
+  animation: pulse-orbit 4s ease-in-out infinite;
+}
 
+.logo-center {
+  animation: pulse-center 2s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-orbit {
+  0%, 100% {
+    stroke-opacity: 0.6;
+    r: 6;
+  }
+  50% {
+    stroke-opacity: 1;
+    r: 7;
+  }
+}
+
+@keyframes pulse-center {
+  0%, 100% {
+    opacity: 0.8;
+    r: 2;
+  }
+  50% {
+    opacity: 1;
+    r: 3;
+  }
+}
 
 .company-name {
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 2px;
   margin: 0;
+  color: #7dd3fc;
+  text-shadow: 0 0 5px rgba(103, 232, 249, 0.3);
+}
+
+.highlight {
+  color: #67e8f9;
+  font-weight: bold;
 }
 
 .tagline {
   font-size: 15px;
   font-weight: 300;
-  color: white;
+  color: rgba(147, 197, 253, 0.9);
   margin-bottom: 30px;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid rgba(103, 232, 249, 0.4);
   padding-left: 15px;
   font-style: italic;
 }
@@ -115,6 +185,7 @@
   font-size: 14px;
   font-weight: 400;
   transition: all 0.3s;
+  color: rgba(147, 197, 253, 0.9);
 }
 
 .link-item:after {
@@ -124,16 +195,19 @@
   left: 0;
   width: 0;
   height: 1px;
-  background: white;
-  transition: width 0.3s;
+  background: #67e8f9;
+  transition: width 0.3s, box-shadow 0.3s;
 }
 
 .link-item:hover {
   transform: translateX(5px);
+  color: #67e8f9;
+  text-shadow: 0 0 5px rgba(103, 232, 249, 0.5);
 }
 
 .link-item:hover:after {
   width: 100%;
+  box-shadow: 0 0 5px rgba(103, 232, 249, 0.5);
 }
 
 .reveal-button {
@@ -143,14 +217,17 @@
   width: 50px;
   height: 50px;
   border: none;
-  background: #fff;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(103, 232, 249, 0.3);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(103, 232, 249, 0.2);
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .reveal-button:hover {
   transform: rotate(45deg);
+  box-shadow: 0 0 20px rgba(103, 232, 249, 0.4);
 }
 
 .reveal-icon {
@@ -158,7 +235,7 @@
   display: block;
   width: 20px;
   height: 2px;
-  background: #020c17;
+  background: #67e8f9;
   margin: 0 auto;
   transition: all 0.3s;
 }
@@ -169,7 +246,7 @@
   position: absolute;
   width: 20px;
   height: 2px;
-  background: #020c17;
+  background: #67e8f9;
   left: 0;
   transition: all 0.3s;
 }
@@ -202,26 +279,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 80px;
-  padding-top: 30px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(103, 232, 249, 0.15);
   font-size: 12px;
 }
 
-.coordinate-marker {
-  font-family: monospace;
-  color: #888;
+.coordinates {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Courier New', monospace;
+  color: rgba(147, 197, 253, 0.8);
   letter-spacing: 1px;
+}
+
+.coordinate-value {
+  position: relative;
+  padding-left: 15px;
+}
+
+.coordinate-value:before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: #67e8f9;
 }
 
 .legal {
   display: flex;
   align-items: center;
+  color: rgba(147, 197, 253, 0.8);
 }
 
 .separator {
   margin: 0 10px;
-  color: #ccc;
+  color: rgba(103, 232, 249, 0.5);
 }
 
 .time-indicator {
@@ -232,29 +324,47 @@
 .dot {
   width: 8px;
   height: 8px;
-  background-color: #090;
+  background-color: #67e8f9;
   border-radius: 50%;
   margin-right: 10px;
+  box-shadow: 0 0 10px rgba(103, 232, 249, 0.8);
 }
 
 .pulse {
   animation: pulse 2s infinite;
 }
 
+.time-value {
+  font-family: 'Courier New', monospace;
+  margin-right: 10px;
+  color: rgba(147, 197, 253, 0.9);
+}
+
+.system-status {
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #67e8f9;
+  background-color: rgba(15, 23, 42, 0.5);
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1px solid rgba(103, 232, 249, 0.3);
+}
+
 @keyframes pulse {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(0, 153, 0, 0.5);
+    box-shadow: 0 0 0 0 rgba(103, 232, 249, 0.7);
   }
   
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 5px rgba(0, 153, 0, 0);
+    box-shadow: 0 0 0 5px rgba(103, 232, 249, 0);
   }
   
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(0, 153, 0, 0);
+    box-shadow: 0 0 0 0 rgba(103, 232, 249, 0);
   }
 }
 
@@ -283,9 +393,10 @@
   .footer-lower {
     flex-direction: column;
     text-align: center;
+    gap: 15px;
   }
   
-  .coordinate-marker, .legal, .time-indicator {
-    margin: 10px 0;
+  .coordinates, .legal, .time-indicator {
+    margin: 5px 0;
   }
 }

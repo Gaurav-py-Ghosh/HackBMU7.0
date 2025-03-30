@@ -1,6 +1,7 @@
 .about-container {
   background: linear-gradient(to bottom, #000314, #001028);
-  min-height: 200vh;
+  /* Reduced min-height from 200vh to 150vh to make the section shorter */
+  min-height: 100vh;
   position: relative;
   overflow: hidden;
 }

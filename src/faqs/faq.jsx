@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './faq.css';
 
-const faq = () => {
+const FAQ = () => {
   const [openSection, setOpenSection] = useState(null);
+  const [visibleItems, setVisibleItems] = useState([]);
 
   const toggleSection = (section) => {
     setOpenSection(openSection === section ? null : section);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisibleItems(sections.map((_, index) => index));
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   const sections = [
     { 
@@ -36,38 +44,47 @@ const faq = () => {
   ];
 
   return (
-    <div className="hackathon-footer-fullscreen">
-      <div className="footer-container">
-        <h1 className="footer-title">FAQs</h1>
-        
-        <p className="footer-description">
-          A comprehensive platform for innovators to showcase groundbreaking technological solutions across diverse domains.
-        </p>
+    <div className="hackathon-retro-faq-container">
+      <div className="hackathon-retro-faq">
+        <div className="hackathon-retro-faq__header">
+          <h2 className="hackathon-retro-faq__title">FAQs</h2>
+          <div className="hackathon-retro-faq__edition-container">
+            <div className="hackathon-retro-faq__edition">7TH EDITION</div>
+          </div>
+          <p className="hackathon-retro-faq__description">
+            A comprehensive platform for innovators to showcase groundbreaking technological solutions across diverse domains.
+          </p>
+        </div>
 
-        <div className="accordion">
+        <div className="hackathon-retro-faq__list">
           {sections.map((section, index) => (
-            <div key={index} className="accordion-section">
-              <button 
-                onClick={() => toggleSection(index)} 
-                className={`accordion-header ${openSection === index ? 'active' : ''}`}
+            <div 
+              key={index} 
+              className={`hackathon-retro-faq__item ${openSection === index ? 'is-active' : ''} ${visibleItems.includes(index) ? 'is-visible' : ''}`}
+              style={{ '--item-index': index }}
+            >
+              <div 
+                className="hackathon-retro-faq__item-header" 
+                onClick={() => toggleSection(index)}
               >
-                <span className="section-title">{section.title}</span>
-                <span className="toggle-icon">
+                <h3 className="hackathon-retro-faq__item-title">{section.title}</h3>
+                <span className="hackathon-retro-faq__toggle-icon">
                   {openSection === index ? '−' : '+'}
                 </span>
-              </button>
-              {openSection === index && (
-                <div className="accordion-content">
-                  {section.content}
-                </div>
-              )}
+              </div>
+              
+              <div className={`hackathon-retro-faq__item-content ${openSection === index ? 'is-visible' : ''}`}>
+                <p className="hackathon-retro-faq__item-text">{section.content}</p>
+              </div>
+              
+              <div className="hackathon-retro-faq__item-glow"></div>
+              <div className="hackathon-retro-faq__item-scanline"></div>
             </div>
           ))}
         </div>
       </div>
     </div>
   );
-
 };
 
-export default faq;
+export default FAQ;

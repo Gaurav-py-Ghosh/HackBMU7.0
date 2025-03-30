@@ -16,20 +16,23 @@ export default function AboutUs() {
       rafId = requestAnimationFrame(() => {
         if (galaxyRef.current && starRef.current) {
           const scrollY = window.scrollY;
-          const maxScroll = window.innerHeight;
+          // Reduced maxScroll to compress the animation sequence
+          const maxScroll = window.innerHeight * 0.7;
           
-          // Add offset to delay animation start (300px in this case)
-          const adjustedScrollY = Math.max(0, scrollY - 300);
+          // Increased offset to 500px to shift animation further down
+          const adjustedScrollY = Math.max(0, scrollY - 500);
           const progress = Math.min(adjustedScrollY / maxScroll, 1);
           
           // Apply smoother easing function for scale
           const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
           const scale = 1 + easeOutCubic(progress) * 2.5;
           
-          const fadePoint = 0.4;
+          // Adjusted fade point to have a faster transition
+          const fadePoint = 0.3;
           
           // Smoother translation with damping effect
-          const translateY = Math.max(0, Math.min((adjustedScrollY - window.innerHeight * 0.2) * 0.8, window.innerHeight));
+          // Adjusted for faster movement with a higher multiplier
+          const translateY = Math.max(0, Math.min((adjustedScrollY - window.innerHeight * 0.1) * 1.2, window.innerHeight));
           galaxyRef.current.parentElement.style.transform = `translateY(-${translateY}px)`;
           
           // Apply smooth scale with GPU acceleration
@@ -70,7 +73,8 @@ export default function AboutUs() {
   }, [isVisible]);
 
   // Generate star elements with improved distribution
-  const TOTAL_STARS = 650;
+  // Reduced number of stars to match shorter section
+  const TOTAL_STARS = 500;
   const INNER_STAR_DENSITY = 0.35;
   const INNER_ORBIT_RANGE = { min: 50, max: 220 };
   const OUTER_ORBIT_RANGE = { min: 220, max: 1400 };
@@ -100,11 +104,12 @@ export default function AboutUs() {
     
     const orbitRadius = semiMajorAxis * (1 - eccentricity * eccentricity);
     
+    // Shortened rotation periods for faster animation
     const rotationPeriod = isInnerStar 
-      ? Math.random() * 15 + 15
-      : Math.random() * 25 + 30;
+      ? Math.random() * 10 + 10
+      : Math.random() * 15 + 20;
 
-    const delay = Math.random() * -60;
+    const delay = Math.random() * -40;
     const opacity = Math.random() * 0.5 + (isInnerStar ? 0.5 : 0.3);
     
     const size = isInnerStar 
