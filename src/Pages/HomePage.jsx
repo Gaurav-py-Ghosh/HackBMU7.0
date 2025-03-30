@@ -11,6 +11,9 @@ import Glimpses from "../glimpses/glimpses.jsx";
 import About from "../about/about.jsx";
 import Location from "../location/location.jsx";
 import "./HomePage.css";
+import LeadOrganizers from "../LeadOrganizers/LeadOrganizers.jsx";
+import ContactUs from "../ContactUs/ContactUs.jsx";
+import VenueSection from "../VenueSection/VenueSection.jsx";
 
 function Homepage() {
   const lenis = new Lenis({ duration: 2 });
@@ -53,7 +56,9 @@ function Homepage() {
       <Glimpses />
       <Sponsors />
       <Roadmap />
-      <Location />
+      <LeadOrganizers/>
+      <VenueSection/>
+      <ContactUs/>
       <Faq />
       <Footer />
     </>
