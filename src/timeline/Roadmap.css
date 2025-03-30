@@ -27,8 +27,8 @@ body {
 }
 
 .hackathon-container {
-  max-width: 1400px;
-  margin: 0 auto;
+  margin: 0.5rem;
+  border-radius: 0.625rem;
   background-color: var(--deep-blue);
   position: relative;
   overflow: hidden;
@@ -149,7 +149,7 @@ body {
   margin-bottom: 3rem;
   z-index: 1;
   backdrop-filter: blur(10px);
-  border-radius: 2px;
+  border-radius: 0.25rem;
   background: var(--glass);
   border: 1px solid var(--subtle-white);
   padding: 2rem;
@@ -395,7 +395,7 @@ body {
 .event-card {
   flex: 1;
   background-color: transparent;
-  border-radius: 0;
+  border-radius: 0px 0.25rem;
   padding: 2rem 1.5rem 1.5rem 1.5rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;

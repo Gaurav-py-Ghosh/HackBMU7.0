@@ -5,6 +5,8 @@
     color: white;
     padding: 2rem;
     position: relative;
+    margin: 0.5rem;
+    border-radius: 0.625rem;
 }
 
 /* Starry Background */

@@ -1,135 +1,237 @@
-/* .hackathon-container {
-    position: relative;
-    min-height: 100vh;
-    background: rgba(12, 28, 59, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    width: 100vw;
+.about-container {
+  background: linear-gradient(to bottom, #000314, #001);
+  min-height: 200vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.galaxy-section {
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+  top: 0.5rem;
+  transform: translateY(-0.625rem);
+  transition: transform 0.1s linear;
+}
+
+.galaxy {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: radial-gradient(circle at center, #000314 0%, #000 100%);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.central-star {
+  position: fixed;
+  top: calc(50% + 0.5rem);
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 
+    0 0 15px #fff,
+    0 0 30px #4fc3f7,
+    0 0 50px #4fc3f7,
+    0 0 70px #4fc3f7;
+  z-index: 2;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.central-star::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #fff 0%, transparent 70%);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.central-star.expanded {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle at center, 
+    rgba(30, 0, 60, 0.8) 0%,
+    rgba(15, 0, 30, 0.9) 40%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  box-shadow: 
+    0 0 100px rgba(60, 0, 120, 0.3),
+    inset 0 0 80px rgba(80, 0, 160, 0.2);
+  backdrop-filter: blur(8px);
+  animation: darkMatterPulse 8s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+}
+
+.central-star.expanded::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(80, 0, 160, 0.1) 0%,
+    rgba(40, 0, 80, 0.05) 40%,
+    transparent 70%
+  );
+  animation: darkMatterSpin 20s linear infinite;
+}
+
+.central-star.expanded::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(60, 0, 120, 0.1) 0deg,
+    transparent 10deg,
+    rgba(80, 0, 160, 0.05) 20deg
+  );
+  animation: darkMatterDistort 15s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+@keyframes darkMatterPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes darkMatterSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes darkMatterDistort {
+  0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  50% { transform: translate(-50%, -50%) scale(1.1) rotate(180deg); }
+}
+
+.central-star .about-content {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.central-star.expanded .about-content {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: all;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.spiral-arm {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #fff, 0 0 15px #4fc3f7, 0 0 20px rgba(79, 195, 247, 0.5);
+  animation: rotate 30s linear infinite;
+  opacity: 0;
+  animation-delay: var(--delay);
+}
+
+@keyframes rotate {
+  0% {
+    transform: 
+      rotate(var(--start-angle))
+      translateX(calc(var(--orbit-radius) * (1 - var(--eccentricity))))
+      translateX(calc(var(--orbit-radius) * var(--eccentricity)))
+      scaleX(calc(1 - var(--eccentricity)))
+      rotate(calc(-1 * var(--start-angle)));
+    opacity: 0;
   }
-  
-  .particle-background {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+  5% {
+    opacity: var(--star-opacity);
   }
-  
-  .particle {
-    position: absolute;
-    background-color: #f5f7fa;
-    border-radius: 50%;
+  90% {
+    opacity: var(--star-opacity);
   }
-  
-  .holographic-effect {
-    position: absolute;
-    inset: 0;
-    opacity: 0.2;
-    pointer-events: none;
+  100% {
+    transform: rotate(calc(var(--start-angle) + 360deg)) translateX(var(--orbit-radius)) scaleX(calc(1 - var(--eccentricity))) rotate(calc(-1 * (var(--start-angle) + 360deg)));
+    opacity: 0;
   }
-  
-  .orbit-large, .orbit-small {
-    position: absolute;
-    border: 2px dashed rgba(255, 255, 255, 1);
-    border-radius: 50%;
-  }
-  
-  .orbit-large {
-    width: 100%;
-    height: 100%;
-    animation: spin-slow 50s linear infinite;
-  }
-  
-  .orbit-small {
-    width: 75%;
-    height: 75%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    animation: spin-medium 40s linear infinite;
-  }
-  
-  @keyframes spin-slow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  
-  @keyframes spin-medium {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-  }
-  
-  .content-container {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    max-width: 40rem;
-    padding: 3rem;
-    background: rgba(17, 34, 64, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 1.5rem;
-    border: 1px solid rgba(59, 130, 246, 0.3);
-  }
-  
-  .title {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(to right, rgba(12, 28, 59, 0.8), rgba(255, 255, 255, 0.3), #06b6d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .description {
-    font-size: 1.125rem;
-    margin-bottom: 2rem;
-    color: white;
-    line-height: 1.6;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .explore-button {
-    position: relative;
-    padding: 0.75rem 2rem;
-    border-radius: 9999px;
-    background: linear-gradient(to right, #0d275f, #0f024c);
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .explore-button:hover {
-    transform: scale(1.05);
-  }
-  
-  .button-glow {
-    position: absolute;
-    inset: 0;
-    background: white;
-    opacity: 0.2;
-    transform: scale(0);
-    transition: transform 0.3s ease-in-out;
-    border-radius: 9999px;
-  }
-  
-  .explore-button:hover .button-glow {
-    transform: scale(1);
-  }
-  
-  .rocket {
-    display: inline-block;
-    margin-left: 0.5rem;
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .explore-button:hover .rocket {
-    transform: rotate(45deg);
-  }
-   */
+}
+
+.planet-section {
+  position: relative;
+  margin-top: 100vh;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.planet {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle at 30% 30%, #1a237e, #0d47a1, #000);
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 50px rgba(0, 149, 255, 0.5);
+}
+
+.about-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  width: 80%;
+}
+
+.about-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(0, 149, 255, 0.8);
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.quantum-btn {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #4fc3f7;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.quantum-btn:hover {
+  background: #4fc3f7;
+  box-shadow: 0 0 20px #4fc3f7;
+}

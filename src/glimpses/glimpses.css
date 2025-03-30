@@ -1,6 +1,6 @@
 .gallery-container {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0.5rem auto;
   padding: 1rem 0;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   background-color: #0d1117;
