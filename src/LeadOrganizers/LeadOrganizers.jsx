@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './LeadOrganizers.css';
 
+// Import photos (make sure these files exist in your project)
+import gauravPhoto from '/img/gaurav.webp'; // Update with actual path
+import sejalPhoto from '/img/sejal.webp';   // Update with actual path
+import tanmayPhoto from '/img/tanmay.webp'; // Update with actual path
+
 const LeadOrganizers = () => {
-  const [animatedElements, setAnimatedElements] = useState({});
-  
   useEffect(() => {
     // Create random stars for background effect
     const createStars = () => {
@@ -26,37 +29,7 @@ const LeadOrganizers = () => {
     };
     
     createStars();
-    
-    // Add hover effect detection for each card
-    const cards = document.querySelectorAll('.lead-card');
-    cards.forEach(card => {
-      card.addEventListener('mouseenter', handleCardHover);
-      card.addEventListener('mouseleave', handleCardLeave);
-    });
-    
-    return () => {
-      cards.forEach(card => {
-        card.removeEventListener('mouseenter', handleCardHover);
-        card.removeEventListener('mouseleave', handleCardLeave);
-      });
-    };
   }, []);
-  
-  const handleCardHover = (e) => {
-    const card = e.currentTarget;
-    const badgeEl = card.querySelector('.lead-badge');
-    if (badgeEl) {
-      badgeEl.classList.add('badge-pulse');
-    }
-  };
-  
-  const handleCardLeave = (e) => {
-    const card = e.currentTarget;
-    const badgeEl = card.querySelector('.lead-badge');
-    if (badgeEl) {
-      badgeEl.classList.remove('badge-pulse');
-    }
-  };
   
   // Particles for the background effect
   const particles = Array.from({ length: 15 }).map((_, i) => {
@@ -73,24 +46,31 @@ const LeadOrganizers = () => {
   const leads = [
     {
       name: "Gaurav Ghosh",
-      title: "Lead Organizer\nHackNMU Command Center",
-      initial: "G",
-      badge: "Mission Commander",
-      level: 5
+      title: "Lead Organizer",
+      photo: gauravPhoto,
+      socialLinks: {
+        linkedin: "https://www.linkedin.com/in/gaurav-ghosh-9531132b3/",
+        github: "https://github.com/Gaurav-py-Ghosh"
+      }
     },
     {
-      name: "Sejal",
-      title: "Lead Organizer\nQuantum Operations",
-      initial: "S",
-      badge: "Quantum Specialist",
-      level: 4
+      name: "Sejal Gupta",
+      title: "Lead Organizer",
+      photo: sejalPhoto,
+      socialLinks: {
+        linkedin: "https://www.linkedin.com/in/sejal-gupta-943832291/",
+        github: "https://github.com/Sejal207",
+        instagram: "https://www.instagram.com/_sejal05_/"
+      }
     },
     {
-      name: "Tanmay",
-      title: "Lead Organizer\nSystems Architect",
-      initial: "T",
-      badge: "System Engineer",
-      level: 4
+      name: "Tanmay Gupta",
+      title: "Lead Organizer",
+      photo: tanmayPhoto,
+      socialLinks: {
+        linkedin: "https://www.linkedin.com/in/tanmay-gupta-b337012b5/",
+        github: "#"
+      }
     }
   ];
 
@@ -128,47 +108,42 @@ const LeadOrganizers = () => {
             
             <div className="lead-photo-container">
               <div className="lead-photo-placeholder">
-                {lead.initial}
+                <img src={lead.photo} alt={lead.name} className="lead-photo" />
               </div>
               <div className="lead-glow"></div>
             </div>
             
             <h3 className="lead-name">{lead.name}</h3>
-            <div className="lead-badge">
-              <span className="badge-icon">★</span>
-              <span className="badge-text">{lead.badge}</span>
-            </div>
-            
-            <div className="lead-level">
-              <div className="level-text">Level {lead.level}</div>
-              <div className="level-bar">
-                <div className="level-progress" style={{ width: `${lead.level * 20}%` }}></div>
-              </div>
-            </div>
-            
             <p className="lead-title">{lead.title}</p>
             
             <div className="lead-social">
-  <a href="#" className="social-icon">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M6 9H2V21H6V9Z" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  </a>
-  <a href="#" className="social-icon">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M23 3C22.1 3.6 21.1 4.1 20 4.4C19.1 3.4 17.7 2.9 16.2 2.9C13.3 2.9 11 5.2 11 8.1C11 8.5 11 8.9 11.1 9.2C6.7 9 3.2 6.9 1.3 3.7C0.9 4.5 0.7 5.3 0.7 6.2C0.7 7.9 1.5 9.4 2.9 10.3C2.2 10.3 1.5 10.1 0.9 9.7C0.9 12.2 2.7 14.2 5 14.7C4.6 14.8 4.2 14.9 3.7 14.9C3.4 14.9 3.1 14.9 2.8 14.8C3.4 16.8 5.2 18.2 7.4 18.2C5.7 19.5 3.6 20.2 1.3 20.2C0.9 20.2 0.5 20.2 0.1 20.1C2.3 21.5 4.9 22.3 7.7 22.3C16.2 22.3 21 15 21 8.7C21 8.5 21 8.3 21 8.1C21.9 7.4 22.7 6.5 23.3 5.5L23 3Z" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  </a>
-  <a href="#" className="social-icon">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5229 6.47715 22 12 22C17.5229 22 22 17.5229 22 12C22 6.47715 17.5229 2 12 2Z" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M2 12H22" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  </a>
-</div>
+              {/* LinkedIn */}
+              <a href={lead.socialLinks.linkedin} className="social-icon" target="_blank" rel="noopener noreferrer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M6 9H2V21H6V9Z" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+
+              {/* GitHub */}
+              <a href={lead.socialLinks.github} className="social-icon" target="_blank" rel="noopener noreferrer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 19C4 20.5 4 16.5 2 16M16 22V18.13C16.0375 17.6532 15.9731 17.1738 15.811 16.7238C15.6489 16.2738 15.3929 15.8634 15.06 15.52C18.2 15.17 21.5 13.98 21.5 8.52C21.4997 7.12383 20.9627 5.7812 20 4.77C20.4559 3.54851 20.4236 2.19835 19.91 0.999999C19.91 0.999999 18.73 0.649999 16 2.48C13.708 1.85882 11.292 1.85882 9 2.48C6.27 0.649999 5.09 0.999999 5.09 0.999999C4.57638 2.19835 4.54414 3.54851 5 4.77C4.03013 5.7887 3.49252 7.14346 3.5 8.55C3.5 13.97 6.8 15.16 9.94 15.55C9.611 15.89 9.35726 16.2954 9.19531 16.7399C9.03335 17.1844 8.96681 17.6581 9 18.13V22" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+
+              {/* Instagram (only for Sejal) */}
+              {lead.socialLinks.instagram && (
+                <a href={lead.socialLinks.instagram} className="social-icon" target="_blank" rel="noopener noreferrer">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16 11.37C16.1234 12.2022 15.9813 13.0522 15.5938 13.799C15.2063 14.5458 14.5931 15.1514 13.8416 15.5297C13.0901 15.9079 12.2384 16.0396 11.4078 15.9059C10.5771 15.7723 9.80976 15.3801 9.21484 14.7852C8.61992 14.1902 8.22773 13.4229 8.09407 12.5922C7.9604 11.7615 8.09207 10.9099 8.47033 10.1584C8.84859 9.40685 9.45419 8.79374 10.201 8.40624C10.9478 8.01874 11.7978 7.87659 12.63 8C13.4789 8.12588 14.2649 8.52146 14.8717 9.12831C15.4785 9.73515 15.8741 10.5211 16 11.37Z" stroke="#00eeff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="16.5" cy="7.5" r="1.5" fill="#00eeff"/>
+                  </svg>
+                </a>
+              )}
+            </div>
           </div>
         ))}
       </div>

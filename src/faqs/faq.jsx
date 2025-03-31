@@ -76,9 +76,6 @@ const FAQ = () => {
               <div className={`hackathon-retro-faq__item-content ${openSection === index ? 'is-visible' : ''}`}>
                 <p className="hackathon-retro-faq__item-text">{section.content}</p>
               </div>
-              
-              <div className="hackathon-retro-faq__item-glow"></div>
-              <div className="hackathon-retro-faq__item-scanline"></div>
             </div>
           ))}
         </div>

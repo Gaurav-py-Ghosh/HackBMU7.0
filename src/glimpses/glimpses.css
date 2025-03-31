@@ -1,5 +1,5 @@
 .gallery-container {
-  max-width: 900px;
+  max-width: 1200px; /* Increased from 900px */
   margin: 0.5rem auto;
   padding: 1rem 0;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
@@ -73,7 +73,7 @@
 /* Carousel */
 .gallery-carousel {
   position: relative;
-  height: 350px;
+  height: 380px; /* Increased height to accommodate larger cards */
 }
 
 .memories-container {
@@ -87,8 +87,8 @@
 
 .memory-card {
   position: absolute;
-  width: 320px;
-  height: 240px;
+  width: 380px; /* Increased from 320px */
+  height: 280px; /* Increased from 240px */
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
 }

@@ -19,19 +19,15 @@ const HighTechRetroContact = () => {
   const contactData = [
     {
       id: 1,
-      name: "NEO MATSUDA",
-      role: "LEAD DEVELOPER",
-      email: "neo.matsuda@cyberhack.io",
-      phone: "+1 (415) 555-0123",
-      specialties: ["Neural Networks", "Blockchain", "AI Systems"]
+      name: "GAURAV GHOSH",
+      email: "gaurav.ghosh.23cse@bmu.edu.in",
+      phone: "+91 79080 41180"
     },
     {
       id: 2,
-      name: "ZETA REEVES",
-      role: "UX ARCHITECT",
-      email: "zeta.reeves@cyberhack.io",
-      phone: "+1 (415) 555-0189",
-      specialties: ["Interface Design", "VR Environments", "Biometrics"]
+      name: "SEJAL GUPTA",
+      email: "sejal.gupta.23cse@bmu.edu.in",
+      phone: "+91 89018 27731"
     }
   ];
 
@@ -147,15 +143,6 @@ const HighTechRetroContact = () => {
       background: linear-gradient(90deg, #1e8fb4, transparent);
     }
 
-    /* Role styling */
-    .role {
-      color: #8a2be2;
-      font-size: 0.9rem;
-      margin-bottom: 1.2rem;
-      letter-spacing: 1px;
-      opacity: 0.85;
-    }
-
     /* Contact details with improved spacing */
     .contact-detail {
       margin: 0.9rem 0;
@@ -178,39 +165,29 @@ const HighTechRetroContact = () => {
       color: #4ee576;
       text-decoration: none;
       transition: color 0.3s;
+      cursor: pointer;
     }
 
     .value a:hover {
       color: #8a2be2;
-      text-decoration: underline;
-    }
-
-    /* Specialties tags with darker theme */
-    .specialties {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1.5rem;
-    }
-
-    .specialty {
-      background: rgba(30, 143, 180, 0.1);
-      border: 1px solid rgba(30, 143, 180, 0.3);
-      padding: 0.4rem 0.7rem;
-      border-radius: 3px;
-      font-size: 0.8rem;
-      color: #1e8fb4;
+      text-decoration: none;
     }
 
     /* CTA button with dark theme */
+    .cta-button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.8rem;
+    }
+
     .cta-button {
       display: block;
-      width: 100%;
+      width: 80%;
+      text-align: center;
       background: rgba(30, 143, 180, 0.05);
       color: #4ee576;
       border: 1px solid rgba(78, 229, 118, 0.4);
       padding: 1rem;
-      margin-top: 1.8rem;
       font-family: 'Courier New', monospace;
       font-size: 1rem;
       cursor: pointer;
@@ -219,6 +196,7 @@ const HighTechRetroContact = () => {
       overflow: hidden;
       letter-spacing: 1px;
       border-radius: 4px;
+      text-decoration: none;
     }
 
     .cta-button::before {
@@ -236,6 +214,7 @@ const HighTechRetroContact = () => {
       background: rgba(30, 143, 180, 0.15);
       color: #e0e0e0;
       border-color: #1e8fb4;
+      text-decoration: none;
     }
 
     .cta-button:hover::before {
@@ -319,7 +298,7 @@ const HighTechRetroContact = () => {
       <style>{styles}</style>
       <div className="retro-container">
         <div className="header">
-          <h2>CONTACT_CYBERHACK.EXE</h2>
+          <h2>CONTACT_HackBMU.EXE</h2>
           <h3>// SECURE LINE ESTABLISHED //</h3>
         </div>
         
@@ -332,7 +311,6 @@ const HighTechRetroContact = () => {
               onMouseLeave={() => setHoverPerson(null)}
             >
               <div className="name">{person.name}</div>
-              <div className="role">{person.role}</div>
               
               <div className="contact-detail">
                 <span className="label">EMAIL:</span>
@@ -343,24 +321,23 @@ const HighTechRetroContact = () => {
               
               <div className="contact-detail">
                 <span className="label">SECURE:</span>
-                <span className="value">{person.phone}</span>
+                <span className="value">
+                  <a href={`tel:${person.phone}`}>{person.phone}</a>
+                </span>
               </div>
               
-              <div className="specialties">
-                {person.specialties.map((specialty, index) => (
-                  <span key={index} className="specialty">{specialty}</span>
-                ))}
+              <div className="cta-button-container">
+                <a 
+                  href={`mailto:${person.email}`}
+                  className="cta-button"
+                  onClick={() => {
+                    setGlitchActive(true);
+                    setTimeout(() => setGlitchActive(false), 300);
+                  }}
+                >
+                  INIT_COMMUNICATION
+                </a>
               </div>
-              
-              <button 
-                className="cta-button"
-                onClick={() => {
-                  setGlitchActive(true);
-                  setTimeout(() => setGlitchActive(false), 300);
-                }}
-              >
-                INIT_COMMUNICATION
-              </button>
             </div>
           ))}
         </div>
