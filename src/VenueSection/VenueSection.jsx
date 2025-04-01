@@ -103,7 +103,7 @@ const VenueSection = () => {
               </div>
               <div>
                 <h3 className="info-title">QUANTUM LINK</h3>
-                <p className="info-text">+1 (COSMIC) 123-WARP</p>
+                <p className="info-text">7908041180 , 8901827731 </p>
               </div>
             </div>
             
@@ -113,7 +113,7 @@ const VenueSection = () => {
               </div>
               <div>
                 <h3 className="info-title">TRANSMISSION NODE</h3>
-                <p className="info-text">quantum.connect@cosmos.universe</p>
+                <p className="info-text">acm@bmu.edu.in</p>
               </div>
             </div>
           </div>
@@ -159,10 +159,6 @@ const VenueSection = () => {
       <div className="ping-inner"></div>
     </div>
 
-    {/* University Name in Grid */}
-    <div className="university-label">
-      <p>BML Munjal University</p>
-    </div>
 
     {/* Sectors */}
     <div className="sector-indicators">
