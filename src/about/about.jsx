@@ -317,40 +317,7 @@ const About = () => {
         </div>
       </div>
       
-      {/* Optimized orbiting particles for better performance */}
-      <div className="particles-container">
-        {[...Array(windowWidth < 768 ? 8 : 15)].map((_, i) => {
-          const radius = windowWidth < 768 ? 
-                          (25 + i * 8) : 
-                          (30 + i * 12);
-          const speed = 20 + i * 2;
-          const delay = i * 0.2;
-          const particleColor = i % 3 === 0 ? 
-            `rgba(${100 + scrollProgress * 80}, ${150 + scrollProgress * 70}, ${255}, ${0.3 + scrollProgress * 0.4})` :
-            i % 3 === 1 ? 
-            `rgba(${120 + scrollProgress * 60}, ${140 + scrollProgress * 70}, ${220 + scrollProgress * 35}, ${0.3 + scrollProgress * 0.4})` :
-            `rgba(${140 + scrollProgress * 40}, ${160 + scrollProgress * 60}, ${240 + scrollProgress * 15}, ${0.3 + scrollProgress * 0.4})`;
-          
-          return (
-            <div 
-              key={`particle-${i}`}
-              className="particle"
-              style={{
-                opacity: scrollProgress > 0.2 ? 0.3 + scrollProgress * 0.7 : 0,
-                width: `${0.25 + (i % 4) * 0.15}rem`,
-                height: `${0.25 + (i % 4) * 0.15}rem`,
-                backgroundColor: particleColor,
-                boxShadow: `0 0 ${3 + (i % 5) * 2 + scrollProgress * 5}px ${particleColor}`,
-                transform: `translate(-50%, -50%) rotate(${i * 24}deg) translateX(${radius * scrollProgress}vw)`,
-                animation: scrollProgress > 0.2 ? `orbit ${speed}s linear infinite` : 'none',
-                animationDelay: `${delay}s`,
-                '--radius': `${radius}vw`,
-                willChange: 'transform, opacity'
-              }}
-            />
-          );
-        })}
-      </div>
+      {/* Removed the particles-container section */}
     </div>
   );
 };
