@@ -133,7 +133,7 @@
 }
 
 .hackathon-retro-faq__description {
-  color: #98ffc3;
+  color: #65aacd;
   font-family: 'Share Tech Mono', monospace;
   font-size: 1rem;
   max-width: 700px;
@@ -187,7 +187,7 @@
 }
 
 .hackathon-retro-faq__item-title {
-  color: #40ff80;
+  color: #00eafb;
   text-shadow: 0 0 10px rgba(64, 255, 128, 0.5);
   font-family: 'Share Tech Mono', monospace;
   letter-spacing: 1px;

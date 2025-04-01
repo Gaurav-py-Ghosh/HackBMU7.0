@@ -69,7 +69,7 @@ const LeadOrganizers = () => {
       photo: tanmayPhoto,
       socialLinks: {
         linkedin: "https://www.linkedin.com/in/tanmay-gupta-b337012b5/",
-        github: "#"
+        github: "https://github.com/TanmayGpta"
       }
     }
   ];

@@ -195,7 +195,7 @@
                   <div className="ping-inner"></div>
                 </div>
                 <div className="map-coordinates">
-                  <p className="coordinates-text">Latitude: 42.3601° N Longitude: 71.0589° W</p>
+                  <p className="coordinates-text">Latitude: 42° N Longitude: 71.0589° W</p>
                 </div>
               </div>
               {/* Action Button */}
