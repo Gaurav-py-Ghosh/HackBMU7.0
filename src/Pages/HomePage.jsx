@@ -59,10 +59,10 @@ function Homepage() {
       ) : (
         <>
           <Navbar />
-          <div className={`below-nav-content ${belowNavVisible ? "visible" : "hidden"}`}>
+          {/* <div className={`below-nav-content ${belowNavVisible ? "visible" : "hidden"}`}>
             <button className="nav-register">Register Now</button>
             <span className="nav-time">48:00:00</span>
-          </div>
+          </div> */}
           <About />
           <Glimpses />
           <Sponsors />

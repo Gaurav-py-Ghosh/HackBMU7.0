@@ -309,7 +309,7 @@
 }
 
 /* For nerdy terminal effect */
-@keyframes scan {
+/* @keyframes scan {
   from { background-position: 0 0; }
   to { background-position: 0 100%; }
 }
@@ -330,4 +330,4 @@
   pointer-events: none;
   animation: scan 8s linear infinite;
   z-index: 100;
-}
+} */
