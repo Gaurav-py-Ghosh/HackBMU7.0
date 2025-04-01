@@ -303,6 +303,14 @@
     width: 1.2rem;
     height: 1.2rem;
     animation: icon-glow 3s infinite alternate;
+    
+    /* Center the icon within its container */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  
+    /* Remove margin-right to avoid shifting */
+    margin-right: 0; 
   }
   
   @keyframes icon-glow {
@@ -355,7 +363,6 @@
     font-size: 0.8rem;
     letter-spacing: 2px;
   }
-  
   .map-container {
     position: relative;
     width: 100%;
@@ -369,6 +376,7 @@
     z-index: 2;
   }
   
+  /* Grid Styling */
   .map-grid-lines {
     position: absolute;
     inset: 0;
@@ -379,11 +387,13 @@
     animation: grid-move 20s linear infinite;
   }
   
+  /* Animations */
   @keyframes grid-move {
     0% { background-position: 0 0; }
     100% { background-position: 20px 20px; }
   }
   
+  /* Overlay Effect */
   .map-overlay {
     position: absolute;
     inset: 0;
@@ -396,12 +406,30 @@
     100% { opacity: 0.8; }
   }
   
+  /* Ping Effect */
   .map-ping {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
+  }
+  
+  /* New Styles: Google Map Positioned in the Grid */
+  .google-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;  /* Ensuring it stays within the grid */
+    height: 100%;
+    opacity: 0.7; /* Adjust transparency to blend with the UI */
+    z-index: 1; /* Places the map below grid and overlay */
+    pointer-events: none; /* Prevents accidental interactions */
+  }
+  
+  /* Optional: Enable Map on Click */
+  .map-container:hover .google-map {
+    pointer-events: auto; /* Allows interactions only when hovered */
   }
   
   .ping-outer {
@@ -534,7 +562,7 @@
   }
   
   .button-icon {
-    margin-right: 10px;
+    margin-right: 15px;
     width: 1.5rem;
     height: 1.5rem;
     color: #00eeff;
