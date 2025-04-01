@@ -14,13 +14,10 @@ import "./HomePage.css";
 import LeadOrganizers from "../LeadOrganizers/LeadOrganizers.jsx";
 import ContactUs from "../ContactUs/ContactUs.jsx";
 import VenueSection from "../VenueSection/VenueSection.jsx";
+import Loader from "../Loader/Loader.jsx"; // Import the Loader component
 
 function Homepage() {
   const lenis = new Lenis({ duration: 2 });
-
-  // lenis.on("scroll", (e) => {
-  //   console.log(e);
-  // });
 
   function raf(time) {
     lenis.raf(time);
@@ -34,33 +31,49 @@ function Homepage() {
   }, []);
 
   const [belowNavVisible, setBelowNavVisible] = useState(true);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
-      setBelowNavVisible(currentScrollPos < 10);  // Adjust 200 as needed
+      setBelowNavVisible(currentScrollPos < 10);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    
+    // Simulate loading completion after 3-5 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000 + Math.random() * 2000); // Random time between 3-5 seconds
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
     <>
-      <Navbar />
-      <div className={`below-nav-content ${belowNavVisible ? "visible" : "hidden"}`}>
-        <button className="nav-register">Register Now</button>
-        <span className="nav-time">48:00:00</span>
-      </div>
-      <About />
-      <Glimpses />
-      <Sponsors />
-      <Roadmap />
-      <LeadOrganizers/>
-      <VenueSection/>
-      <ContactUs/>
-      <Faq />
-      <Footer />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Navbar />
+          <div className={`below-nav-content ${belowNavVisible ? "visible" : "hidden"}`}>
+            <button className="nav-register">Register Now</button>
+            <span className="nav-time">48:00:00</span>
+          </div>
+          <About />
+          <Glimpses />
+          <Sponsors />
+          <Roadmap />
+          <LeadOrganizers/>
+          <VenueSection/>
+          <ContactUs/>
+          <Faq />
+          <Footer />
+        </>
+      )}
     </>
   );
 }
