@@ -120,7 +120,7 @@ const VenueSection = () => {
           
           <div className="status-indicator">
             <div className="status-dot"></div>
-            <span className="status-text">ONLINE</span>
+            <span className="status-text"></span>
           </div>
         </div>
         
@@ -161,12 +161,12 @@ const VenueSection = () => {
 
 
     {/* Sectors */}
-    <div className="sector-indicators">
+    {/* <div className="sector-indicators">
       <div className="sector">SECTOR A</div>
       <div className="sector">SECTOR B</div>
       <div className="sector">SECTOR C</div>
       <div className="sector">SECTOR D</div>
-    </div>
+    </div> */}
 
     {/* Coordinates */}
     <div className="map-coordinates">
@@ -188,7 +188,7 @@ const VenueSection = () => {
             <div className="power-bar">
               <div className="power-level"></div>
             </div>
-            <span className="power-text">WARP DRIVE: READY</span>
+            <span className="power-text"></span>
           </div>
         </div>
       </div>
