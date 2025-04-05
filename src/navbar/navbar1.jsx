@@ -4,7 +4,6 @@ const EnhancedCosmicNav = () => {
   const [activeConstellation, setActiveConstellation] = useState('home');
   const [hoveringStar, setHoveringStar] = useState(null);
   const [navMode, setNavMode] = useState('interactive');
-  const [soundEnabled, setSoundEnabled] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isExploring, setIsExploring] = useState(false);
   const [zoomLevel, setZoomLevel] = useState(1);
@@ -12,7 +11,6 @@ const EnhancedCosmicNav = () => {
   
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
-  const audioRef = useRef(null);
   const animationRef = useRef(null);
   
   // Enhanced star map with more celestial bodies and deeper information
@@ -102,44 +100,6 @@ const EnhancedCosmicNav = () => {
       nebula: { x: 50, y: 45, size: 110, opacity: 0.15, color: "#00ccff" }
     }
   };
-
-  // Audio effects
-  useEffect(() => {
-    audioRef.current = {
-      starHover: new Audio("https://assets.mixkit.co/sfx/preview/mixkit-space-coin-win-notification-271.mp3"),
-      navigate: new Audio("https://assets.mixkit.co/sfx/preview/mixkit-magical-tone-notification-2334.mp3"),
-      ambient: new Audio("https://assets.mixkit.co/sfx/preview/mixkit-deep-ambient-space-wind-2011.mp3")
-    };
-    
-    // Configure audio
-    Object.values(audioRef.current).forEach(audio => {
-      audio.volume = 0.3;
-      audio.preload = "auto";
-    });
-    
-    audioRef.current.ambient.loop = true;
-    audioRef.current.ambient.volume = 0.1;
-    
-    // Start ambient if enabled
-    if (soundEnabled) {
-      audioRef.current.ambient.play().catch(() => {});
-    }
-    
-    return () => {
-      Object.values(audioRef.current).forEach(audio => audio.pause());
-    };
-  }, []);
-
-  // Update sound when enabled/disabled
-  useEffect(() => {
-    if (audioRef.current) {
-      if (soundEnabled) {
-        audioRef.current.ambient.play().catch(() => {});
-      } else {
-        audioRef.current.ambient.pause();
-      }
-    }
-  }, [soundEnabled]);
 
   // Handle mouse position tracking for interactive mode
   useEffect(() => {
@@ -298,7 +258,7 @@ const EnhancedCosmicNav = () => {
         ctx.shadowBlur = 8;
         ctx.stroke();
         
-        // Draw particles along the connection
+        // Draw static particles along the connection
         const particleCount = Math.floor(Math.hypot(endX - startX, endY - startY) / 15);
         for (let i = 0; i < particleCount; i++) {
           const ratio = Math.random();
@@ -306,11 +266,8 @@ const EnhancedCosmicNav = () => {
           const y = startY + (endY - startY) * ratio;
           const size = Math.random() * 1.2;
           
-          // Animated movement
-          const offset = Math.sin(Date.now() * 0.002 + i * 5) * 2;
-          
           ctx.beginPath();
-          ctx.arc(x + offset * (Math.random() - 0.5), y + offset * (Math.random() - 0.5), size, 0, Math.PI * 2);
+          ctx.arc(x, y, size, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(150, 255, 240, ${Math.random() * 0.5 + 0.2})`;
           ctx.fill();
         }
@@ -392,18 +349,15 @@ const EnhancedCosmicNav = () => {
   };
 
   const drawCosmicDust = (ctx, width, height) => {
-    // Add floating dust particles
+    // Add static dust particles (no animation)
     ctx.save();
     for (let i = 0; i < 30; i++) {
       const x = Math.random() * width;
       const y = Math.random() * height;
       const size = Math.random() * 1.5;
       
-      // Animated movement
-      const drift = Math.sin(Date.now() * 0.001 + i) * 2;
-      
       ctx.beginPath();
-      ctx.arc(x + drift, y + drift * 0.5, size, 0, Math.PI * 2);
+      ctx.arc(x, y, size, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.1 + 0.05})`;
       ctx.fill();
     }
@@ -431,20 +385,10 @@ const EnhancedCosmicNav = () => {
   // Handle star interactions
   const handleStarHover = (starId) => {
     setHoveringStar(starId);
-    
-    if (soundEnabled && audioRef.current) {
-      audioRef.current.starHover.currentTime = 0;
-      audioRef.current.starHover.play().catch(() => {});
-    }
   };
   
   const handleStarClick = (starId) => {
     setActiveConstellation(starId);
-    
-    if (soundEnabled && audioRef.current) {
-      audioRef.current.navigate.currentTime = 0;
-      audioRef.current.navigate.play().catch(() => {});
-    }
     
     // Scroll to corresponding section
     const element = document.getElementById(starId);
@@ -476,13 +420,6 @@ const EnhancedCosmicNav = () => {
               className="cosmic-nav-button"
             >
               {isExploring ? 'Exit Explore' : 'Explore'}
-            </button>
-            
-            <button
-              onClick={() => setSoundEnabled(!soundEnabled)}
-              className={`cosmic-nav-button ${soundEnabled ? 'sound-on' : 'sound-off'}`}
-            >
-              {soundEnabled ? 'Sound On' : 'Sound Off'}
             </button>
           </div>
         </div>
@@ -629,18 +566,6 @@ const EnhancedCosmicNav = () => {
         
         .cosmic-nav-button:hover {
           background-color: rgba(30, 64, 175, 0.5);
-        }
-        
-        .sound-on {
-          background-color: rgba(8, 145, 178, 0.5);
-          color: #67e8f9;
-          border-color: rgba(103, 232, 249, 0.5);
-        }
-        
-        .sound-off {
-          background-color: rgba(30, 58, 138, 0.2);
-          color: rgba(147, 197, 253, 0.7);
-          border-color: rgba(59, 130, 246, 0.2);
         }
         
         .cosmic-nav-canvas-container {

@@ -34,8 +34,8 @@ const HighTechRetroContact = () => {
   const styles = `
     /* Base container with darker theme */
     .retro-container {
-      background: linear-gradient(135deg, #0a0a0a, #121621);
-      color: #4ee576;
+       background: linear-gradient(135deg, #0a0a0a, #121621);
+      color: #00aaff;
       font-family: 'Courier New', monospace;
       padding: 2.5rem;
       border-radius: 8px;
@@ -127,7 +127,7 @@ const HighTechRetroContact = () => {
       font-size: 1.5rem;
       font-weight: bold;
       margin-bottom: 0.8rem;
-      color: #e0e0e0;
+      color: #00aaff;
       position: relative;
       display: inline-block;
       letter-spacing: 1.5px;
@@ -162,7 +162,7 @@ const HighTechRetroContact = () => {
     }
 
     .value a {
-      color: #4ee576;
+      color: #00aaff;
       text-decoration: none;
       transition: color 0.3s;
       cursor: pointer;
@@ -185,8 +185,8 @@ const HighTechRetroContact = () => {
       width: 80%;
       text-align: center;
       background: rgba(30, 143, 180, 0.05);
-      color: #4ee576;
-      border: 1px solid rgba(78, 229, 118, 0.4);
+      color: #00aaff;
+      border: 1px solid #;
       padding: 1rem;
       font-family: 'Courier New', monospace;
       font-size: 1rem;
