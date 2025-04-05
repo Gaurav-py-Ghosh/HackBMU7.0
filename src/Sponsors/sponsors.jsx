@@ -90,7 +90,7 @@ const Sponsors = () => {
             ref={titleRef} 
             className={`sponsors_section-title ${titleVisible ? 'visible' : ''}`}
           >
-            Our Amazing Sponsors
+            Past Sponsors
           </h2>
           <div className="sponsors-grid" ref={sponsorsRef}>
             {sponsors.map((sponsor, index) => (

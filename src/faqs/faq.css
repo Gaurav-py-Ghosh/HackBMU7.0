@@ -4,7 +4,7 @@
   --primary-blue: #0a1e36;
   --accent-blue: #0088ff;
   --neon-blue: #00eeff;
-  --neon-green: #00ff88;
+  --neon-green: #00aaff;
   --white: #ffffff;
   --off-white: #f0f7ff;
   --subtle-white: rgba(255, 255, 255, 0.07);
@@ -125,7 +125,7 @@
   letter-spacing: 2px;
   color: var(--neon-green);
   padding: 8px 20px;
-  border: 1px solid var(--neon-green);
+  border: 1px solid #00aaff;
   border-radius: 20px;
   background: rgba(0, 255, 136, 0.1);
   text-transform: uppercase;
@@ -178,17 +178,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(64, 255, 128, 0.3);
+  border-bottom: 1px solid #00aaff;
   transition: all 0.3s ease;
 }
 
 .hackathon-retro-faq__item.is-active .hackathon-retro-faq__item-header {
-  border-bottom-color: rgba(64, 255, 128, 0.6);
+  border-bottom-color: #00aaff;
 }
 
 .hackathon-retro-faq__item-title {
   color: #00eafb;
-  text-shadow: 0 0 10px rgba(64, 255, 128, 0.5);
+  text-shadow: 0 0 10px #00aaff;
   font-family: 'Share Tech Mono', monospace;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -200,7 +200,7 @@
 .hackathon-retro-faq__toggle-icon {
   color: #64ffda;
   font-size: 1.5rem;
-  text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+  text-shadow: 0 0 10px #00aaff;
   transition: all 0.3s ease;
 }
 
