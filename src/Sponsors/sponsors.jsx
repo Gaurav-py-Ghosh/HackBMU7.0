@@ -135,7 +135,7 @@ const Sponsors = () => {
               titleVisible ? "visible" : ""
             }`}
           >
-            Our Amazing Sponsors
+            Past Sponsors
           </h2>
           <div className="sponsors-grid" ref={sponsorsRef}>
             {sponsors.map((sponsor, index) => (

@@ -19,29 +19,22 @@ const FAQ = () => {
   const sections = [
     { 
       title: "Participant Eligibility", 
-      content: "Open to tech professionals, students, and innovators globally. Participants must be 18 years or older. Multidisciplinary teams are encouraged." 
+      content: "Open to tech professionals and all students. Multidisciplinary teams are encouraged." 
     },
-    { 
-      title: "Competition Tracks", 
-      content: "Competitive tracks include Artificial Intelligence, Blockchain Technologies, Climate Tech, Digital Health, and Open Innovation. Each track emphasizes cutting-edge technological solutions." 
-    },
+    
     { 
       title: "Registration Process", 
-      content: "Online registration through our secure portal. Early registration offers significant advantages. Individual and team submissions accepted. Application review takes 5-7 business days." 
+      content: "Online registration through Unstop. Individual and team submissions accepted. " 
     },
     { 
       title: "Awards & Recognition", 
-      content: "Comprehensive prize structure including cash awards, venture capital introductions, and acceleration program opportunities. Top three teams receive $15,000, $10,000, and $5,000 respectively." 
-    },
-    { 
-      title: "Technical Infrastructure", 
-      content: "High-performance computing resources provided. Access to cloud credits from major providers. Dedicated technical support throughout the event. Recommended: Latest development tools and frameworks." 
+      content: "Comprehensive prize structure including cash awards and other opportunities. Top three teams receive 30,000, 20,000, and 10,000 (in rupees)respectively." 
     },
     { 
       title: "Evaluation Methodology", 
-      content: "Rigorous multi-stage evaluation by industry experts. Criteria include technological innovation, scalability, potential societal impact, code quality, and pitch presentation effectiveness." 
+      content: "The above section represents evaluation criteria. All evaluation modes will be offline." 
     }
-  ];
+  ]
 
   return (
     <div className="hackathon-retro-faq-container">
@@ -51,9 +44,9 @@ const FAQ = () => {
           <div className="hackathon-retro-faq__edition-container">
             <div className="hackathon-retro-faq__edition">7TH EDITION</div>
           </div>
-          <p className="hackathon-retro-faq__description">
+          {/* <p className="hackathon-retro-faq__description">
             A comprehensive platform for innovators to showcase groundbreaking technological solutions across diverse domains.
-          </p>
+          </p> */}
         </div>
 
         <div className="hackathon-retro-faq__list">

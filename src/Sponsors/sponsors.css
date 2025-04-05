@@ -59,7 +59,7 @@ body {
   color: #fff;
   position: relative;
   text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Inter', sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
   opacity: 0;
@@ -88,7 +88,7 @@ body {
 .sponsor-details h3 {
   color: #40ff80;
   text-shadow: 0 0 10px rgba(64, 255, 128, 0.5);
-  font-family: 'Share Tech Mono', monospace;
+  font-family:  'Inter', sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -96,13 +96,13 @@ body {
 .sponsor-tier {
   color: #33cc66;
   text-shadow: 0 0 8px rgba(64, 255, 128, 0.3);
-  font-family: 'Share Tech Mono', monospace;
+ font-family: 'Inter', sans-serif;
   letter-spacing: 1px;
 }
 
 .sponsor-description {
   color: #98ffc3;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Inter', sans-serif;
   opacity: 0;
   margin: 0 auto;
   letter-spacing: 0.15em;
