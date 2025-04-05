@@ -160,6 +160,7 @@ const VenueSection = () => {
     </div>
 
 
+    
     {/* Sectors */}
     {/* <div className="sector-indicators">
       <div className="sector">SECTOR A</div>
